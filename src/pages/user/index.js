@@ -29,7 +29,7 @@ import { AuthContext } from "../../context/authContext";
 const User = () => {
   const [showMore, setShowMore] = useState(false);
   const { data, loading, error, reFetch } = useFetch(
-    "http://localhost:5000/api/v1/questions"
+    `${process.env.NEXT_PUBLIC_BASEURL}/questions`
   );
 
   const { user } = useContext(AuthContext);

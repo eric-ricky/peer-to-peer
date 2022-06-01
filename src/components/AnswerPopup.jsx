@@ -101,7 +101,7 @@ const AnswerPopup = ({ setAnswering, question, questionId }) => {
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/v1/answers/${questionId}/${user._id}`,
+        `${process.env.NEXT_PUBLIC_BASEURL}/answers/${questionId}/${user._id}`,
         payload
       );
 

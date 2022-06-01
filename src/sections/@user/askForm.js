@@ -134,7 +134,7 @@ const AskForm = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/v1/questions/${user?._id}`,
+        `${process.env.NEXT_PUBLIC_BASEURL}/questions/${user?._id}`,
         payload
       );
 

@@ -115,7 +115,7 @@ const SignupForm = () => {
         };
 
         const { data } = await axios.post(
-          "http://localhost:5000/api/v1/auth/signup",
+          `${process.env.NEXT_PUBLIC_BASEURL}/auth/signup`,
           payload
         );
 
@@ -219,14 +219,7 @@ const SignupForm = () => {
                       alt="Remy"
                     />
 
-                    <IconButton
-                      // sx={{
-                      //   position: "absolute",
-                      //   top: 0,
-                      //   right: 10,
-                      // }}
-                      onClick={() => setImgAsset(null)}
-                    >
+                    <IconButton onClick={() => setImgAsset(null)}>
                       <Icon icon="ant-design:delete-filled" color="red" />
                     </IconButton>
                   </Stack>

@@ -13,7 +13,7 @@ import QuestionSkeleton from "../../components/QuestionSkeleton";
 const MyQuestionsPage = () => {
   const { user } = useContext(AuthContext);
   const { data, loading, error } = useFetch(
-    `http://localhost:5000/api/v1/questions/user/${user?._id}`
+    `${process.env.NEXT_PUBLIC_BASEURL}/questions/user/${user?._id}`
   );
 
   return (

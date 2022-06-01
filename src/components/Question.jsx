@@ -42,7 +42,7 @@ const Question = ({ item }) => {
     setError(null);
     try {
       const res = await axios(
-        `http://localhost:5000/api/v1/answers/${item._id}`
+        `${process.env.NEXT_PUBLIC_BASEURL}/answers/${item._id}`
       );
       console.log(res.data.answers);
       setData(res.data.answers);

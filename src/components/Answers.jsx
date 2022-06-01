@@ -33,7 +33,7 @@ const Answers = ({ item }) => {
     setError(null);
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/v1/comments/${item._id}`
+        `${process.env.NEXT_PUBLIC_BASEURL}/comments/${item._id}`
       );
       console.log(res.data.comments);
       setData(res.data.comments);

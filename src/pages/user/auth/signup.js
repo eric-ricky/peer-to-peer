@@ -33,8 +33,6 @@ export default function Signup() {
   const router = useRouter();
   const { user } = useContext(AuthContext);
 
-  console.log(user);
-
   if (user !== null) {
     console.log("user is found!!");
     const redirectUrl = "/user";
