@@ -37,7 +37,9 @@ const FooterWidget = ({ title, items }) => {
         }}
       >
         {items?.map(({ path, label }, i) => (
-          <Link href={path}>{label}</Link>
+          <Link key={i} href={path}>
+            {label}
+          </Link>
         ))}
       </Stack>
     </Box>
