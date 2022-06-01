@@ -1,12 +1,13 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { Link } from "react-scroll";
 import { styled } from "@mui/material/styles";
 import { Container, Button, Box, Stack, Typography } from "@mui/material";
 
 import HeroImg from "../../assets/hero.png";
 
 ////////////////////////////////
-const RootStyle = styled("section")({
+const RootStyle = styled(Box)({
   paddingTop: "10rem",
   paddingBottom: "5rem",
   background: "#f5f6f9",
@@ -88,10 +89,25 @@ const Hero = () => {
                   "&:hover": {
                     color: "#123456",
                   },
+
+                  "&:hover": {
+                    background: "none",
+                    color: "#123456",
+                  },
                 }}
               >
-                How it works
+                <Link
+                  to="howitworks"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={500}
+                  activeClass="active"
+                >
+                  How it works
+                </Link>
               </Button>
+
               <Box sx={{ flexGrow: 1 }} />
             </Stack>
 

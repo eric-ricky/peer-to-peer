@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Box, Typography, Stack, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useRouter } from "next/router";
 
 //////////////////////////////////
 const RootStyle = styled("section")(({ theme }) => ({
@@ -31,6 +32,7 @@ const HeadingStyle = styled(Typography)({
 });
 
 const Cta = () => {
+  const router = useRouter();
   return (
     <RootStyle id="contact">
       <Container maxWidth="lg">
@@ -72,7 +74,7 @@ const Cta = () => {
           </Stack>
 
           <Stack
-            sx={{ pl: { md: 5, xs: 0 }, width: { md: "40%", xs: "100%" } }}
+            sx={{ pl: { md: 5, xs: 0 }, width: { md: "45%", xs: "100%" } }}
           >
             <Button
               sx={{
@@ -85,9 +87,11 @@ const Cta = () => {
                 fontWeight: 600,
                 mt: { md: 0, xs: 5 },
                 "&:hover": {
-                  background: "#f5f6f9",
+                  background: "blue",
+                  opacity: 0.75,
                 },
               }}
+              onClick={() => router.push("/user")}
             >
               Answer a quesion now
             </Button>

@@ -39,32 +39,43 @@ const HeadingStyle = styled(Typography)({
   fontSize: "28px",
   lineHeight: "24px",
   fontWeight: 900,
-  borderBottom: "solid 5px blue",
   position: "relative",
+});
 
-  //   "& span": {
-  //     background: "blue",
-  //     width: "95px",
-  //     height: "4.5px",
-  //     content: "' '",
-  //     display: "inline-block",
-  //     marginRight: "0.625rem",
-
-  //     position: "absolute",
-  //     bottom: "0px",
-  //     left: "45%",
-  //   },
+const LineStyle = styled(Box)({
+  background: "blue",
+  width: "85px",
+  height: "4.5px",
+  content: "' '",
+  display: "inline-block",
+  marginRight: "0.625rem",
+  position: "absolute",
+  bottom: "-10px",
 });
 
 const HowItWorks = () => {
   return (
     <RootStyle id="howitworks">
-      <Container maxWidth="lg">
-        <HeadingStyle
-          sx={{ width: { md: "20%", xs: "70%" }, mx: "auto" }}
-          gutterBottom
-        >
-          <span></span>How it works
+      <Container
+        maxWidth="lg"
+        sx={{
+          overflowX: "hidden !important",
+        }}
+      >
+        <HeadingStyle gutterBottom>
+          <LineStyle
+            component="span"
+            sx={{
+              left: "32%",
+            }}
+          />
+          How it works
+          <LineStyle
+            component="span"
+            sx={{
+              right: "32%",
+            }}
+          />
         </HeadingStyle>
 
         <Box sx={{ mt: 10 }}>
@@ -78,10 +89,6 @@ const HowItWorks = () => {
                 lg={4}
                 sx={{
                   textAlign: "center",
-                  //   display: "flex",
-                  //   flexDirection: "column",
-                  //   alignItems: "center",
-                  //   background: "#123456",
                   p: 4,
                 }}
               >

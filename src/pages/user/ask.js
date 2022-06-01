@@ -22,7 +22,7 @@ const Ask = () => {
     <>
       <SEO
         title="Ask A Questions"
-        description="Collection of free top of the line startup landing templates built using react/ next js. Free to download, simply edit and deploy! Updated weekly!"
+        description="Just ask and get clear and precise explanation from your peers."
       />
 
       <Container sx={{ paddingTop: 5 }}>
