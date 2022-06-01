@@ -9,6 +9,7 @@ import {
   IconButton,
   Button,
   Avatar,
+  Badge,
 } from "@mui/material";
 import { Icon } from "@iconify/react";
 import { deepOrange, deepPurple } from "@mui/material/colors";
@@ -16,14 +17,16 @@ import { deepOrange, deepPurple } from "@mui/material/colors";
 import Logo from "../../components/Logo";
 import NavLink from "../../components/NavLink";
 import { AuthContext } from "../../context/authContext";
+import AccountPopover from "../user/AccountPopover";
+import NotificationPopover from "../user/NotificationPopover";
 
 /////////////////////////////////////////////
 const RootStyle = styled("section")({
   position: "fixed",
   width: "100%",
   background: "#f5f6f9",
-  paddingTop: "1.75rem",
-  paddingBottom: "1.75rem",
+  paddingTop: "1rem",
+  paddingBottom: "1rem",
   display: "flex",
   alignItems: "center",
   zIndex: 999,
@@ -70,18 +73,18 @@ const Header = () => {
         >
           <Logo />
 
-          <Stack
-            direction="row"
-            alignItems="center"
-            spacing={3}
-            sx={{
-              display: {
-                md: "flex",
-                xs: "none",
-              },
-            }}
-          >
-            <Stack direction="row">
+          <Stack direction="row" alignItems="center" spacing={3}>
+            <Stack
+              direction="row"
+              gap={3}
+              mr={2}
+              sx={{
+                display: {
+                  md: "flex",
+                  xs: "none",
+                },
+              }}
+            >
               {MenuItems?.map((item) => (
                 <NavLink
                   styles={{
@@ -94,8 +97,8 @@ const Header = () => {
               ))}
             </Stack>
 
-            {user === null ? (
-              <Stack direction="row">
+            <Stack direction="row" alignItems="center" gap={2}>
+              {user === null && (
                 <Button
                   sx={{
                     color: "#123456",
@@ -105,66 +108,59 @@ const Header = () => {
                     fontWeight: 600,
                     p: 0,
                     m: 0,
-                    borderBottom: "1px solid blue",
-                  }}
-                  onClick={() => router.push("/user/auth/signup")}
-                >
-                  signup
-                </Button>
-                <span>/</span>
-                <Button
-                  sx={{
-                    color: "#123456",
-                    textTransform: "inherit",
-                    fontSize: "15px",
-                    lineHeight: "24px",
-                    fontWeight: 600,
-                    p: 0,
-                    borderBottom: "1px solid blue",
+                    border: "1px solid blue",
                   }}
                   onClick={() => router.push("/user/auth/login")}
                 >
                   login
                 </Button>
-              </Stack>
-            ) : (
-              <Stack direction="row">
-                <Button
-                  variant="contained"
-                  startIcon={<Icon icon="akar-icons:chat-question" />}
-                  sx={{
-                    textTransform: "inherit",
-                    fontSize: {
-                      md: "14px",
-                      xs: "12px",
-                    },
-                  }}
-                  onClick={() => router.push("/user/ask")}
-                >
-                  Ask a Question
-                </Button>
-              </Stack>
-            )}
-          </Stack>
+              )}
 
-          <Box sx={{ display: { md: "none" } }}>
-            <IconButton
-              onClick={() => setShowMenu(true)}
-              sx={{ display: { md: "none" } }}
-            >
-              <Avatar
-                sx={{ cursor: "pointer" }}
-                src="https://mui.com/static/images/avatar/3.jpg"
-                alt="Remy"
-              />
-            </IconButton>
-            <IconButton onClick={() => setShowMenu(true)}>
-              <Icon
-                style={{ fontSize: "2.5rem", cursor: "pointer" }}
-                icon="eva:menu-2-fill"
-              />
-            </IconButton>
-          </Box>
+              {!(user === null) && (
+                <>
+                  <Button
+                    variant="outlined"
+                    startIcon={<Icon icon="akar-icons:chat-question" />}
+                    sx={{
+                      textTransform: "inherit",
+                      fontSize: {
+                        md: "14px",
+                        xs: "12px",
+                      },
+                      display: {
+                        md: "flex",
+                        xs: "none",
+                      },
+                    }}
+                    onClick={() => router.push("/user/ask")}
+                  >
+                    Ask a Question
+                  </Button>
+                  <NotificationPopover />
+                  <AccountPopover />
+                </>
+              )}
+
+              <IconButton
+                sx={{
+                  display: {
+                    md: "none",
+                    xs: "flex",
+                  },
+                }}
+                onClick={() => setShowMenu(true)}
+              >
+                <Icon
+                  style={{
+                    fontSize: "2rem",
+                    cursor: "pointer",
+                    color: "#123456",
+                  }}
+                  icon="eva:menu-2-fill"
+                />
+              </IconButton>
+            </Stack>
+          </Stack>
 
           {/* Drawer */}
           {showMenu && (

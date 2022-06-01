@@ -16,6 +16,7 @@ import { Icon } from "@iconify/react";
 import Logo from "../../components/Logo";
 import { AuthContext } from "../../context/authContext";
 import AccountPopover from "./AccountPopover";
+import NotificationPopover from "./NotificationPopover";
 
 const MenuItems = [
   {
@@ -118,7 +119,7 @@ const Header = () => {
                 <AccountPopover />
               </Stack>
 
-              <IconButton
+              {/* <IconButton
                 color={!false ? "primary" : "default"}
                 onClick={() => console.log("opening..")}
                 sx={{ width: 40, height: 40 }}
@@ -126,7 +127,9 @@ const Header = () => {
                 <Badge badgeContent="4" color="error">
                   <Icon icon="akar-icons:envelope" width={28} height={28} />
                 </Badge>
-              </IconButton>
+              </IconButton> */}
+
+              <NotificationPopover />
 
               <IconButton
                 sx={{

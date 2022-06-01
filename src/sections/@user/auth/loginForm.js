@@ -18,6 +18,7 @@ import {
   Box,
   Typography,
   Avatar,
+  Alert,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { AuthContext } from "../../../context/authContext";
@@ -26,6 +27,7 @@ const LoginForm = () => {
   const router = useRouter();
   const { onLogin } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [formAlert, setAlert] = useState(undefined);
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -43,6 +45,7 @@ const LoginForm = () => {
     validationSchema: LoginSchema,
     onSubmit: async () => {
       console.log("loging in...");
+      setAlert(undefined);
 
       try {
         const payload = { email: values.email, password: values.password };
@@ -52,13 +55,27 @@ const LoginForm = () => {
           payload
         );
 
-        console.log(data?.user);
-        onLogin(data?.user);
+        setAlert({
+          message: "Login successfully",
+          severity: "success",
+        });
 
+        console.log(data?.user);
+
+        onLogin(data?.user);
         const returnUrl = router.query.returnTo || "/user";
         router.push(returnUrl);
       } catch (error) {
         console.log(error);
+
+        setAlert({
+          message: `${error?.response?.data?.message}`,
+          severity: "error",
+        });
+
+        setTimeout(() => {
+          setAlert(undefined);
+        }, 4000);
       }
     },
   });
@@ -69,9 +86,17 @@ const LoginForm = () => {
   return (
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+        {formAlert && (
+          <Alert
+            sx={{ mb: 2.8 }}
+            severity={`${formAlert?.severity}`}
+            onClose={() => setAlert(null)}
+          >
+            {formAlert?.message}
+          </Alert>
+        )}
         <Stack spacing={3}>
           <TextField
-            // fullwidth
             type="email"
             label="Email address"
             error={Boolean(touched.email && errors.email)}
@@ -80,7 +105,6 @@ const LoginForm = () => {
           />
 
           <TextField
-            // fullWidth
             type={showPassword ? "text" : "password"}
             label="Password"
             error={Boolean(touched.password && errors.password)}
@@ -116,9 +140,23 @@ const LoginForm = () => {
               />
             }
             label="Remember me"
+            sx={{
+              "& .css-ahj2mt-MuiTypography-root": {
+                fontSize: { md: "1rem", xs: "10px" },
+                lineHeight: "12px",
+              },
+            }}
           />
 
-          <Link href="/user/auth/forget-password">Forgot password?</Link>
+          <Typography
+            sx={{
+              cursor: "pointer",
+              fontSize: { md: "1rem", xs: "10px" },
+            }}
+            onClick={() => router.push("/user/auth/forget-password")}
+          >
+            Forgot password?
+          </Typography>
         </Stack>
 
         <Button
