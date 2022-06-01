@@ -1,4 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../context/authContext";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { styled } from "@mui/material/styles";
 import { Typography, Box, Card, Divider } from "@mui/material";
@@ -9,8 +11,6 @@ import Logo from "../../../components/Logo";
 import AuthSocial from "../../../sections/@user/auth/authSocial";
 
 import LoginImg from "../../../assets/illustration_login.png";
-import { AuthContext } from "../../../context/authContext";
-import { useRouter } from "next/router";
 
 //////////////////////////////////
 const RootStyle = styled(Box)({
@@ -31,11 +31,9 @@ const ContentStyle = styled(Card)(({ theme }) => ({
   },
 }));
 
-const login = () => {
+export default function Login() {
   const router = useRouter();
   const { user } = useContext(AuthContext);
-
-  console.log(user);
 
   if (user !== null) {
     console.log("user is found!!");
@@ -112,6 +110,4 @@ const login = () => {
       </RootStyle>
     </>
   );
-};
-
-export default login;
+}

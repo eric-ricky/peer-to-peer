@@ -5,7 +5,6 @@ import { Typography, Box, Card, Divider } from "@mui/material";
 
 import SEO from "../../../components/seo";
 import Logo from "../../../components/Logo";
-import AuthSocial from "../../../sections/@user/auth/authSocial";
 import SignupForm from "../../../sections/@user/auth/signupForm";
 
 import LoginImg from "../../../assets/illustration_login.png";
@@ -30,7 +29,7 @@ const ContentStyle = styled(Card)(({ theme }) => ({
   },
 }));
 
-const signup = () => {
+export default function Signup() {
   const router = useRouter();
   const { user } = useContext(AuthContext);
 
@@ -87,14 +86,6 @@ const signup = () => {
               Enter your details below.
             </Typography>
 
-            {/* <AuthSocial /> */}
-
-            {/* <Divider sx={{ my: 3 }}>
-              <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                OR
-              </Typography>
-            </Divider> */}
-
             <SignupForm />
 
             <Typography
@@ -110,6 +101,4 @@ const signup = () => {
       </RootStyle>
     </>
   );
-};
-
-export default signup;
+}
